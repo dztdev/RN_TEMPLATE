@@ -24,22 +24,16 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import { Home } from './src/Views'
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import { Home, Detail } from './src/Views'
 
-const App: () => React$Node = () => {
-  return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Home />
-        </ScrollView>
-      </SafeAreaView>
-    </>
-  );
-};
+const MainNavigator = createStackNavigator({
+  Home: {screen: Home},
+  Detail: {screen: Detail},
+});
+
+const App = createAppContainer(MainNavigator);
 
 const styles = StyleSheet.create({
   scrollView: {
